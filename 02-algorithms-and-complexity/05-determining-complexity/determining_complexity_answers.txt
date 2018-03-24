@@ -29,3 +29,13 @@ As shown by the data above, for n > 2, the number of recursive calls is increasi
 In terms of complexity calculations, coefficients can be factored out since the definition of Big-O is the lower bound k * O(f(n)). So 0(3Fib(n)) = 3 * O(Fib(n)) or just O(Fib(n)). The Fibonacci sequence is tightly bound by f(n) ~ 1.6^n, so we can round up and say the rate of increase will always be less then 2^n, resulting in O(2^n) for a recursive Fibonacci algorithm.
 
 That was fun!!! (No, seriously.)
+
+5. numbers_iterative.rb
+I'm betting this one is better than the recursive ... let's see. Yep, this iterative Fibonacci runs in O(n), linear time. Much better.
+
+What really controls the complexity here is the number of iterations performed or the while i < n-1 statement. All the other statements in the algorithm are declarations (and the final return) that run in constant time. So for a given n, n-1 iterations occur. As n increases the number of iterations increases linearly. What we really have is a constant time for the statements outside the while loop plus some constant time for each iteration => O(1) + O(n*1). But as n grows the first term is insignificant, so we just say this it's Big-O is O(n).
+
+6. sort.rb
+It's a Quick Sort. Quick sort has an average performance of O(nlog(n)). Lets see if I can match that logic ...
+
+IN a quick sort you will set the pivot and iterate through the collection comparing to the pivot value creating two sub-arrays left and right that are less than and greater than the pivot value, respectively. Then calls are made recursively on the left and right subarray to sort them, which requires iterating through the sub-arrays. The recursive calls end when the base case of an array of size 1 is reached, because a single array is considered sorted. Iterating through the each arrays take n-time, and how many times that occurs is dependent on the level of recursion. For n = 2, one level of recursion is required, for n = 4, two levels of recursion are required, for n = 8, three levels of recursion are required, for n = 16, 4 levels for recursion are required. The levels of recursion increase in lg-time, increasing by one level each time n doubles. So the overall complexity is n * lg(n) or loglinear time.
